@@ -52,12 +52,4 @@ public class ChatScreenMixin {
         //noinspection unchecked
         ((List<GuiEventListener>) screen.children()).add(button);
     }
-
-    // Fix sliders unfocused // TODO fix focused buttons preventing chat input
-    /*@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/ChatScreen;setFocused(Lnet/minecraft/client/gui/components/events/GuiEventListener;)V"), method = "render")
-    public void render(ChatScreen screen, GuiEventListener input) {
-        if (screen instanceof InBedChatScreen) return;
-
-        if (!screen.isDragging()) screen.setFocused(input);
-    }*/
 }

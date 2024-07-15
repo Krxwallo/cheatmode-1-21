@@ -1,7 +1,10 @@
 package io.github.krxwallo.cheatmode.mixins;
 
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import io.github.krxwallo.cheatmode.events.Hooks;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ComponentPath;
+import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.gui.screens.Screen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,5 +21,14 @@ public class ScreenMixin {
     @Inject(at = @At("TAIL"), method = "onClose")
     public void close(CallbackInfo ci) {
         Hooks.onScreenClose((Screen) (Object) this);
+    }
+
+    @WrapWithCondition(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/Screen;changeFocus(Lnet/minecraft/client/gui/ComponentPath;)V"), method = "keyPressed")
+    public boolean maybeChangeFocus(Screen instance, ComponentPath path) {
+        if ((Object) this instanceof ChatScreen) {
+            System.out.println("CANCELLING FOCUS CHANGE!!!");
+        }
+        //noinspection ConstantValue
+        return !((Object) this instanceof ChatScreen);
     }
 }
