@@ -58,7 +58,6 @@ public final class Hooks {
     }
 
     public static void onScreenInit(Screen screen) {
-        System.out.println("SCREEN INIT!");
         if (screen instanceof InventoryScreen invScreen) {
             if (Config.CLIENT.instantCreativeInventory.get()) creative();
             else {
@@ -75,7 +74,6 @@ public final class Hooks {
     }
 
     public static void onScreenClose(Screen screen) {
-        System.out.println("SCREEN CLOSE!");
         if (mc().player == null) return;
 
         if (screen instanceof CreativeModeInventoryScreen) {

@@ -25,9 +25,6 @@ public class ScreenMixin {
 
     @WrapWithCondition(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/Screen;changeFocus(Lnet/minecraft/client/gui/ComponentPath;)V"), method = "keyPressed")
     public boolean maybeChangeFocus(Screen instance, ComponentPath path) {
-        if ((Object) this instanceof ChatScreen) {
-            System.out.println("CANCELLING FOCUS CHANGE!!!");
-        }
         //noinspection ConstantValue
         return !((Object) this instanceof ChatScreen);
     }

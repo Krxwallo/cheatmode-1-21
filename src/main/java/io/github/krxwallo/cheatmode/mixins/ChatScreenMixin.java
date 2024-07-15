@@ -1,5 +1,6 @@
 package io.github.krxwallo.cheatmode.mixins;
 
+import io.github.krxwallo.cheatmode.CheatMode;
 import io.github.krxwallo.cheatmode.options.CheatModeOptions;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.gui.components.events.GuiEventListener;
@@ -28,7 +29,7 @@ public class ChatScreenMixin {
         var height = screen.height;
 
         int i = 0;
-        for(OptionInstance<?> option : new OptionInstance[]{CheatModeOptions.instantCreativeInventory, CheatModeOptions.flight, CheatModeOptions.reach}) {
+        for (OptionInstance<?> option : new OptionInstance[]{CheatModeOptions.instantCreativeInventory, CheatModeOptions.flight, CheatModeOptions.blockReach, CheatModeOptions.interactionReach}) {
             int j = width / 5 * 3;
             int k = height / 10 - 12 + 24 * i;
             var button = option.createButton(mc().options, j, k, 150);

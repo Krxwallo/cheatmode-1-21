@@ -30,16 +30,29 @@ public class CheatModeOptions {
                 if (!value && Hooks.mc().player != null) Hooks.mc().player.getAbilities().flying = false;
             }
     );
-    public static final OptionInstance<Double> reach = new OptionInstance<>(
-        "cheatmode.options.reach",
-        OptionInstance.cachedConstantTooltip(Component.translatable("options.cheatmode.reach.tooltip")),
+
+    public static final OptionInstance<Double> blockReach = new OptionInstance<>(
+        "cheatmode.options.block_reach",
+        OptionInstance.cachedConstantTooltip(Component.translatable("options.cheatmode.block_reach.tooltip")),
         (title, value) -> genericValueLabel(title, Component.literal(String.format(Locale.ROOT, "%.1f", value*50))),
         OptionInstance.UnitDouble.INSTANCE.xmap(Mth::square, Math::sqrt),
-        Config.CLIENT.reach.get()/50,
+        Config.CLIENT.blockReach.get()/50,
         (value) -> {
-            Config.CLIENT.reach.set(value*50);
+            Config.CLIENT.blockReach.set(value*50);
             Config.CLIENT_SPEC.save();
         }
+    );
+
+    public static final OptionInstance<Double> interactionReach = new OptionInstance<>(
+            "cheatmode.options.interaction_reach",
+            OptionInstance.cachedConstantTooltip(Component.translatable("options.cheatmode.interaction_reach.tooltip")),
+            (title, value) -> genericValueLabel(title, Component.literal(String.format(Locale.ROOT, "%.1f", value*50))),
+            OptionInstance.UnitDouble.INSTANCE.xmap(Mth::square, Math::sqrt),
+            Config.CLIENT.interactionReach.get()/50,
+            (value) -> {
+                Config.CLIENT.interactionReach.set(value*50);
+                Config.CLIENT_SPEC.save();
+            }
     );
 
 }

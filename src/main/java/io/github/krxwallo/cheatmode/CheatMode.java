@@ -13,6 +13,5 @@ import net.neoforged.fml.config.ModConfig;
 public class CheatMode {
     public CheatMode(ModContainer container) {
         container.registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC, Reference.MOD_ID + "-client.toml");
-        System.out.println("INIT MOD !!!");
     }
 }
